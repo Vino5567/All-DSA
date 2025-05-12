@@ -1,0 +1,25 @@
+package RecursionAndIteration;
+
+import java.util.ArrayList;
+
+public class prac3 {
+    public static void main(String[] args) {
+        String s = "abc";
+        System.out.println(subset("", s));
+    }
+    public static ArrayList<String> subset(String p, String up){
+        if(up.isEmpty()){
+            ArrayList<String> list = new ArrayList<>();
+            list.add(p);
+            return list;
+        }
+        char c = up.charAt(0);
+        ArrayList<String> right = subset(p + (c + 0), up.substring(1));
+//        ArrayList<String> rightt = subset(p + c, up.substring(1));
+        ArrayList<String> left = subset(p, up.substring(1));
+
+        left.addAll(right);
+//        left.addAll(rightt);
+        return left;
+    }
+}
